@@ -1,6 +1,8 @@
 import numpy as np
 import mediapipe as mp
 import cv2
+import os
+from datetime import datetime
 
 
 # landmarks of features from mediapipe
@@ -26,15 +28,22 @@ mp_drawing = mp.solutions.drawing_utils
 
 
 # to display image in cv2 window
-def show_image(image: np.array, msg: str = "Loaded Image"):
+def show_image(image: np.array, msg: str = "output"):
     """
     image : image as np array
-    msg : cv2 window name
+    msg : input filename (without extension)
     """
+    # Create output directory if it doesn't exist
+    output_dir = "output"
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Get current timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
     image_copy = image.copy()
-    cv2.imshow(msg, image_copy)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    output_path = os.path.join(output_dir, f"{timestamp}_{msg}.jpg")
+    cv2.imwrite(output_path, image_copy)
+    print(f"Image saved as: {output_path}")
 
 
 def read_landmarks(image: np.array):

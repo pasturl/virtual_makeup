@@ -1,5 +1,6 @@
 import cv2
 import argparse
+import os
 from utils import *
 
 
@@ -47,12 +48,15 @@ def main(image_path):
     mask = add_mask(
         mask,
         idx_to_coordinates=face_landmarks,
-    face_connections=face_connections,colors=colors
+        face_connections=face_connections,
+        colors=colors
     )
     # combine the image and mask with w.r.to weights
     output = cv2.addWeighted(image, 1.0, mask, 0.2, 1.0)
+    # get input filename without path and extension
+    input_filename = os.path.splitext(os.path.basename(image_path))[0]
     # display the image
-    show_image(output)
+    show_image(output, input_filename)
 
 if __name__ == "__main__":
     # argument parser
