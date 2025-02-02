@@ -19,8 +19,8 @@ face_elements = [
 # change the color of features
 colors_map = {
     # upper lip and lower lips
-    "LIP_UPPER": [0, 0, 255],  # Red in BGR
-    "LIP_LOWER": [0, 0, 255],  # Red in BGR
+    "LIP_UPPER": [255, 0, 0],  # Red in BGR
+    "LIP_LOWER": [255, 0, 0],  # Red in BGR
     # eyeliner
     "EYELINER_LEFT": [139, 0, 0],  # Dark Blue in BGR
     "EYELINER_RIGHT": [139, 0, 0],  # Dark Blue in BGR
